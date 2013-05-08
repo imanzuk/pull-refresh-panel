@@ -20,6 +20,8 @@
  *
  * Date: Mon Jun 4 12:46:34 2012 +0100
  *
+ * Modified by Istvan Manzuk - 2013-May-8
+ * Changes: Sencha Touch 2.2 compatibility; code formatting and fixes according to jslint
  *
  * This plugin adds pull to refresh functionality to a Panel.
  * ## Example
@@ -31,11 +33,10 @@ Ext.define('Scaljeri.plugin.PullRefreshPanel', {
     alias: 'plugin.pullrefreshpanel',
 
     init: function(list) {
-
-   	if ( (this.isList = list.getStore && list.getStore() ? true : false) == true ) { // is list a list ?
-    		return this.callParent(arguments) ;
-    	}
-	this.setList(list);
+        if ( (this.isList = list.getStore && list.getStore() ? true : false) === true ) { // is list a list ?
+                return this.callParent(arguments) ;
+        }
+        this.setList(list);
 
         var me = this,
             pullTpl = me.getPullTpl(),
@@ -58,7 +59,7 @@ Ext.define('Scaljeri.plugin.PullRefreshPanel', {
         me.loadingElement = element.getFirstChild();
         me.messageEl = element.down('.x-list-pullrefresh-message');
         me.updatedEl = element.down('.x-list-pullrefresh-updated');
-	window.x = me.updatedEl ;
+        window.x = me.updatedEl ;
 
         me.maxScroller = me.scrollable.getMaxPosition();
 
@@ -70,16 +71,16 @@ Ext.define('Scaljeri.plugin.PullRefreshPanel', {
     },
 
     loadStore: function() {
-    	if ( this.isList == true ) {
-    		return this.callParent(arguments) ;
-    	}
+        if ( this.isList === true ) {
+            return this.callParent(arguments) ;
+        }
         var me = this;
 
         me.setViewState('loading');
         me.isReleased = false;
-        me.getRefreshFn().call(me, me) ;
+        me.refreshFn().call(me, me);
     },
-    
+
     refreshReady: function() {
         this.scrollable.minPosition.y = 0;
         this.scrollable.scrollTo(null, 0, true);
@@ -113,7 +114,7 @@ Ext.define('Scaljeri.plugin.PullRefreshPanel', {
                 me.setViewState('pull');
             }
         }
-	if ( this.isList == true ) 
-        	me.getTranslatable().translate(0, -y);
+    if ( this.isList === true )
+            me.getTranslatable().translate(0, -y);
     }
 });
